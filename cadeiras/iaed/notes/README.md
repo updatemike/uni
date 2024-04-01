@@ -32,17 +32,17 @@ other
 pointer 8       64
 ```
 
-To get actual size in c:
+To get actual size in c:  
 ```c
 sizeof(char);
 ```
 
-You can define constants as such
+You can define constants as such:  
 ```c
 #define MAX 100
 ```
 
-You can cast a type to another
+You can cast a type to another:  
 ```c
 float x;
 (double) x;
@@ -66,14 +66,14 @@ for(int val = 0; val < MAX; val++) {
 ## Input/Output
 ## scanf()
 Will read the first value that matches the type (decimal number in this case), from stdin, until it finds a whitespace and assigns it to a variable 
-Returns how many values were read.
+Returns how many values were read.  
 ```c
 int x;
 scanf("%d", &x);
 ```
 
 ## printf()
-Will print into stdout
+Will print into stdout.  
 ```c
 printf("%d", x);
 ```
@@ -128,7 +128,7 @@ printf("%d", vec[0][0]);
 ```
 
 ## Copy vectors
-Vectors need to be copied position by position.
+Vectors need to be copied position by position.  
 ```c
 int vec1[SIZE], vec2[SIZE];
 for(int i = 0; i < SIZE; i++)
@@ -136,7 +136,7 @@ for(int i = 0; i < SIZE; i++)
 ```
 
 ## Strings
-In c strings are vectors that end with the char '\0'
+In c strings are vectors that end with the char '\0'.  
 ```c
 #define SIZE 100
 
@@ -145,11 +145,11 @@ scanf("%99s", string);
 string[SIZE - 1] = '\0';
 printf("%s", string);
 ```
-Note string doesn't need & for assignment and that the scanf size is 1 smaller than SIZE because you need to make sure there is space for '\0'.
-Also note that scanf only reads until it finds a whitespace (' ', '\t', '\n', etc).
+Note string doesn't need & for assignment and that the scanf size is 1 smaller than SIZE because you need to make sure there is space for '\0'.  
+Also note that scanf only reads until it finds a whitespace (' ', '\t', '\n', etc).  
 
 ### String library (string.h)
-You can check function docs with: 
+You can check function docs with:  
 ```man <name-of-function>```
 ```c
 #include <string.h>
@@ -161,7 +161,7 @@ strdup(str)           duplicate str       char *
 strlen(str)           size of str         int
 
 # Functions
-Functions need to be declared before being called.
+Functions need to be declared before being called.   
 ```c
 //Function declaration
 void example(int x);
@@ -175,13 +175,13 @@ void example(int x) {
   function body
 }
 ```
-A function always has a return type, void means it returns nothing. 
-For example main() return an int.
+A function always has a return type, void means it returns nothing.  
+For example main() return an int.  
 
 ## Parameters: Value vs Reference
-All arguments are copied to local variables when used. 
-You never alter the original values unless you use pointers to the argument's adress. 
-Note that vectors are in the general sense a pointer so any change alters the original vector. To avoid this make copies.
+All arguments are copied to local variables when used.  
+You never alter the original values unless you use pointers to the argument's adress.  
+Note that vectors are in the general sense a pointer so any change alters the original vector. To avoid this make copies.  
 
 # Structures
 ```c
