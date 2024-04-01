@@ -42,6 +42,12 @@ You can define constants as such
 #define MAX 100
 ```
 
+You can cast a type to another
+```c
+float x;
+(double) x;
+```
+
 ## Cycles
 ### While
 ```c
@@ -58,8 +64,9 @@ for(int val = 0; val < MAX; val++) {
 ```
 
 ## Input/Output
-##scanf()
-Will read the first value that matches the type (decimal number in this case), from stdin, and assign it to x. Returns how many values were read.
+## scanf()
+Will read the first value that matches the type (decimal number in this case), from stdin, until it finds a whitespace and assigns it to a variable 
+Returns how many values were read.
 ```c
 int x;
 scanf("%d", &x);
@@ -71,7 +78,7 @@ Will print into stdout
 printf("%d", x);
 ```
 ```
-%02d    print decimal with at least 2 numbers and   fill left with 0's
+%02d    print decimal with at least 2 numbers and fill left with 0's
 %.2f    print float with 2 floating points
 %99s    read/print string with max 99 chars
 %ld     long decimal
@@ -168,6 +175,41 @@ void example(int x) {
   function body
 }
 ```
-A function always has a return type, void means it returns nothing.
+A function always has a return type, void means it returns nothing. 
+For example main() return an int.
 
-##
+## Parameters: Value vs Reference
+All arguments are copied to local variables when used. 
+You never alter the original values unless you use pointers to the argument's adress. 
+Note that vectors are in the general sense a pointer so any change alters the original vector. To avoid this make copies.
+
+# Structures
+```c
+#define LIC_SIZ
+
+//Structure definition
+typedef struct _car_ {
+  char licence[LIC_SIZ];
+  float miles;
+  float price;
+} Car;
+
+//Structure declaration, all values set to 0
+Car car1 = {0};
+
+//Strucuture manipulation
+car1.miles = 100.20;
+printf("%.2f", car1.miles); //100.20
+```
+
+## Structure operations
+```c
+//Structures have to be compared per value, you can't do car1 == car2
+car1.price == car2.price;
+
+//Functions can use and return structures
+Car example(Car car1) {
+  car1.price = 0;
+  return car1;
+}
+```
