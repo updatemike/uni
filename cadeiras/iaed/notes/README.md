@@ -154,11 +154,13 @@ You can check function docs with:
 ```c
 #include <string.h>
 ```
+```
 function              functionality       return
 strcmp(str1, str2)    compare strings     int
 strcpy(str1, str2)    copy str2 to str1   char *
 strdup(str)           duplicate str       char *
 strlen(str)           size of str         int
+```
 
 # Functions
 Functions need to be declared before being called.   
