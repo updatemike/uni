@@ -16,7 +16,7 @@ int main() {
   return 0;
 }
 ```
-## Data types and sizes (64 bit OS)
+## Data types and sizes (64 bit CPU)
 ```
 type    bytes   bits
 text
@@ -31,39 +31,64 @@ double  8       64
 other
 pointer 8       64
 ```
+There is also unsigned that foregoes negative values (ex: unsigned int).  
 
 To get actual size in c:  
 ```c
 sizeof(char);
 ```
-
-You can define constants as such:  
-```c
-#define MAX 100
-```
-
 You can cast a type to another:  
 ```c
 float x;
 (double) x;
 ```
 
-## Cycles
-### While
+## Variables  
 ```c
-int val = 0;
-while(val < MAX) {
-  printf("%d", val++);
-}
-```
-### For
-```c
-for(int val = 0; val < MAX; val++) {
-  printf("%d", val);
-}
+/* Sequence of declarations */
+int superior, inferior, step;
+char c, name[1000];
+
+/* Declaration by line */
+int superior;
+int inferior;
+int step;
+char c;
+char name[1000];
 ```
 
-## Input/Output
+## Constants  
+You can define constants as such:  
+```c
+#define MAX 100
+enum months = {NO,YES}; //NO = 0, YES = 1.
+const int x = 1;
+```
+Constants cannot be changed.  
+
+## Declaration and Scope
+Where you declare a variable matters.  
+```c
+int global; //Global variable
+void example() {
+  int local = 0; //Local variable
+}
+```
+Remember that it matters if a variable is initialized with a value to prevent odd behaviour.  
+In c global and static variables are initialized to 0 automatically, unless you give it another value.  
+Static variables get defined once and future definitions are ignoredand the value is kept.  
+```c
+int a, b, c;
+int count() {
+  static int i; //i = 0
+  return ++i;
+}
+a = count() //a = 1
+b = count() //b = 2
+c = count() //c = 3
+```
+
+# Input/Output
 ## scanf()
 Will read the first value that matches the type (decimal number in this case), from stdin, until it finds a whitespace and assigns it to a variable 
 Returns how many values were read.  
@@ -91,20 +116,30 @@ Reads a character.
 char ch;
 ch = getchar();
 ```
+## Special characters
+```
+Character           Result
+\n                  New Line
+\t                  Tab
+\0                  Null terminator
+\\                  \
+```
 
 # Operators
 ```
 sign        functionality
 =           assignment
-==          comparison (equal)
-!=          comparison (not equal)
-<           comparsion (smaller)
->           comparison (greater)
+==          relation (equal)
+!=          relation (not equal)
+<           relation (smaller)
+>           relation (greater)
 ||          or
 &&          and
 i++         post-increment i + 1
 ++i         pre-increment i + 1
 ```
+Operators follow the general precedence rule:  
+() >> Unary >> Arithmetics >> Relational >> Logic
 
 # Vectors
 ## Uni-dimensional
@@ -127,6 +162,14 @@ printf("%d", vec[0][0]);
 //Will print 10;
 ```
 
+## Vector Initialization
+```c
+int example[] = {1, 2, 3}; //Length 3 with set values.
+char example[][4] = {"AAA", "BBB"}; //Room for '\0' 
+int example[10] = {1, 2, 3}; //Length 10 with 3 set values, rest is setto 0.
+
+```
+
 ## Copy vectors
 Vectors need to be copied position by position.  
 ```c
@@ -136,12 +179,13 @@ for(int i = 0; i < SIZE; i++)
 ```
 
 ## Strings
-In c strings are vectors that end with the char '\0'.  
+In c strings are vectors that terminate with the char '\0'.  
 ```c
 #define SIZE 100
 
 char string[SIZE];
 scanf("%99s", string);
+//scanf doesn't null terminate a string, you need to do it.
 string[SIZE - 1] = '\0';
 printf("%s", string);
 ```
@@ -162,6 +206,58 @@ strdup(str)           duplicate str       char *
 strlen(str)           size of str         int
 ```
 
+# Conditionals and Cycles
+## Conditionals
+### If
+```c
+int val = MAX;
+//executes instruction if condition is true
+if(val == MAX) //val == MAX is true (1)
+  printf("%d", val); //happens
+```
+### Switch
+```c
+//lets pretend getchar() returns 'q'
+char c = getchar();
+switch(c) {
+  case 'a':
+    printf("a");
+    break;
+  case 'q': //this is the case
+    printf("q"); //this happens
+    break; //this happens 
+  default:
+    printf("Didn't input 'a' or 'q'.");
+    break;
+}
+
+```
+## Cycles
+### While
+```c
+int val = 0;
+while(val < MAX) {
+  printf("%d", val++);
+}
+```
+### For
+```c
+for(int val = 0; val < MAX; val++) {
+  printf("%d", val);
+}
+```
+### Do-While
+```c
+int val = 0;
+do {
+  printf("%d", val++);
+}
+while(val < MAX);
+```
+## Break and Continue
+The instruction 'break' terminates a cycle.  
+The instruction 'continue' skips to the next iteration of the cycle.  
+
 # Functions
 Functions need to be declared before being called.   
 ```c
@@ -178,7 +274,7 @@ void example(int x) {
 }
 ```
 A function always has a return type, void means it returns nothing.  
-For example main() return an int.  
+For example main() returns an int.  
 
 ## Parameters: Value vs Reference
 All arguments are copied to local variables when used.  
@@ -209,9 +305,70 @@ printf("%.2f", car1.miles); //100.20
 //Structures have to be compared per value, you can't do car1 == car2
 car1.price == car2.price;
 
+//You can copy a whole structure
+car2 = car1;
+//Or just a value
+car2.price = car1.price;
+
 //Functions can use and return structures
 Car example(Car car1) {
   car1.price = 0;
   return car1;
 }
+```
+
+# Pointers and Addresses
+As the name implies pointers point at something in memory.  
+```c
+int x = 0;
+int *p_x = &x;
+*p_x == 0; //true
+```
+int * signifies a pointer to an integer.  
+& signifies the memory address of something.  
+Pointers are normally named pX or p_x or xPtr.  
+In the example above the pointer p_x that points to an integer (int *), is pointing at the address of x.  
+*p_x is called dereferencing a pointer. It allows us to get the values of what it is pointing at.
+## Pointers and functions
+```c
+int x = 1, y = 2;
+swap(x, y);
+void swap(int a, int b) {
+  int tmp;
+  tmp = a;
+  a = b;
+  b = tmp;
+}
+```
+The above example won't do anything. x will be 1 and y, 2. But with pointers and addresses this changes.  
+```c
+int x = 1, y = 2;
+swap(&x, &y);
+void swap(int *a, int *b) {
+  int tmp = *a;
+  *a = *b;
+  *b = tmp;
+}
+```
+Now the values will swap. x == 2, y == 1.  
+## NULL pointer
+```c
+#include <stdlib.h>
+int *ptr = NULL;
+```
+Special pointer that means this pointer points at nothing.  
+## Pointer declaration
+As seen before vectors are similar (not exactly the same) to pointers. As such a pointer can be declared as such.  
+```c
+char *ex1 = "hello";
+char ex2[] = "hello";
+```
+Both allocate 5 bytes for 'h', 'e', 'l', 'l', 'o', '\0'.  
+Main diference being that you can´t change where ex2 points to since it's a fixed vector, but you can still change values like ex2[0] = 'H'.  
+## Pointer aritmethics
+```c
+int vec[3] = {1, 2, 3};
+int *p_vec = vec;
+vec[1] == *(vec + 1); //True, value is 2
+*(p_vec + 1) == 2; //True
 ```
