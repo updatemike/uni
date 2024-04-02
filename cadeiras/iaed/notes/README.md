@@ -42,7 +42,6 @@ You can cast a type to another:
 float x;
 (double) x;
 ```
-
 ## Variables  
 ```c
 /* Sequence of declarations */
@@ -56,7 +55,6 @@ int step;
 char c;
 char name[1000];
 ```
-
 ## Constants  
 You can define constants as such:  
 ```c
@@ -65,7 +63,6 @@ enum months = {NO,YES}; //NO = 0, YES = 1.
 const int x = 1;
 ```
 Constants cannot be changed.  
-
 ## Declaration and Scope
 Where you declare a variable matters.  
 ```c
@@ -76,7 +73,7 @@ void example() {
 ```
 Remember that it matters if a variable is initialized with a value to prevent odd behaviour.  
 In c global and static variables are initialized to 0 automatically, unless you give it another value.  
-Static variables get defined once and future definitions are ignoredand the value is kept.  
+Static variables get defined once and future definitions are ignored and the value is kept.  
 ```c
 int a, b, c;
 int count() {
@@ -87,7 +84,6 @@ a = count() //a = 1
 b = count() //b = 2
 c = count() //c = 3
 ```
-
 # Input/Output
 ## scanf()
 Will read the first value that matches the type (decimal number in this case), from stdin, until it finds a whitespace and assigns it to a variable 
@@ -96,7 +92,6 @@ Returns how many values were read.
 int x;
 scanf("%d", &x);
 ```
-
 ## printf()
 Will print into stdout.  
 ```c
@@ -109,7 +104,6 @@ printf("%d", x);
 %ld     long decimal
 %sd     short decimal
 ```
-
 ## getchar()
 Reads a character.
 ```c
@@ -124,7 +118,6 @@ Character           Result
 \0                  Null terminator
 \\                  \
 ```
-
 # Operators
 ```
 sign        functionality
@@ -140,7 +133,6 @@ i++         post-increment i + 1
 ```
 Operators follow the general precedence rule:  
 () >> Unary >> Arithmetics >> Relational >> Logic
-
 # Vectors
 ## Uni-dimensional
 ```c
@@ -150,7 +142,6 @@ vec[0] = 10;
 printf("%d", vec[0]); 
 //Will print 10;
 ```
-
 ## Bi-dimensional
 ```c
 #define LIN 10
@@ -161,15 +152,12 @@ vec[0][0] = 10;
 printf("%d", vec[0][0]);
 //Will print 10;
 ```
-
 ## Vector Initialization
 ```c
 int example[] = {1, 2, 3}; //Length 3 with set values.
 char example[][4] = {"AAA", "BBB"}; //Room for '\0' 
-int example[10] = {1, 2, 3}; //Length 10 with 3 set values, rest is setto 0.
-
+int example[10] = {1, 2, 3}; //Length 10 with 3 set values, rest is set to 0.
 ```
-
 ## Copy vectors
 Vectors need to be copied position by position.  
 ```c
@@ -177,7 +165,6 @@ int vec1[SIZE], vec2[SIZE];
 for(int i = 0; i < SIZE; i++)
   vec2[i] = vec1[i];
 ```
-
 ## Strings
 In c strings are vectors that terminate with the char '\0'.  
 ```c
@@ -191,7 +178,6 @@ printf("%s", string);
 ```
 Note string doesn't need & for assignment and that the scanf size is 1 smaller than SIZE because you need to make sure there is space for '\0'.  
 Also note that scanf only reads until it finds a whitespace (' ', '\t', '\n', etc).  
-
 ### String library (string.h)
 You can check function docs with:  
 ```man <name-of-function>```
@@ -205,7 +191,6 @@ strcpy(str1, str2)    copy str2 to str1   char *
 strdup(str)           duplicate str       char *
 strlen(str)           size of str         int
 ```
-
 # Conditionals and Cycles
 ## Conditionals
 ### If
@@ -257,7 +242,6 @@ while(val < MAX);
 ## Break and Continue
 The instruction 'break' terminates a cycle.  
 The instruction 'continue' skips to the next iteration of the cycle.  
-
 # Functions
 Functions need to be declared before being called.   
 ```c
@@ -275,12 +259,10 @@ void example(int x) {
 ```
 A function always has a return type, void means it returns nothing.  
 For example main() returns an int.  
-
 ## Parameters: Value vs Reference
 All arguments are copied to local variables when used.  
 You never alter the original values unless you use pointers to the argument's adress.  
 Note that vectors are in the general sense a pointer so any change alters the original vector. To avoid this make copies.  
-
 # Structures
 ```c
 #define LIC_SIZ
@@ -299,7 +281,6 @@ Car car1 = {0};
 car1.miles = 100.20;
 printf("%.2f", car1.miles); //100.20
 ```
-
 ## Structure operations
 ```c
 //Structures have to be compared per value, you can't do car1 == car2
@@ -316,7 +297,6 @@ Car example(Car car1) {
   return car1;
 }
 ```
-
 # Pointers and Addresses
 As the name implies pointers point at something in memory.  
 ```c
@@ -326,9 +306,9 @@ int *p_x = &x;
 ```
 int * signifies a pointer to an integer.  
 & signifies the memory address of something.  
-Pointers are normally named pX or p_x or xPtr.  
-In the example above the pointer p_x that points to an integer (int *), is pointing at the address of x.  
-*p_x is called dereferencing a pointer. It allows us to get the values of what it is pointing at.
+Pointers are normally named pX or p_x or xPtr (for x).  
+In the example above the pointer p_x that points to an integer (int *), is pointing at the address of x (&x).  
+*p_x is called dereferencing a pointer. It allows us to get/set the values of what it is pointing at.
 ## Pointers and functions
 ```c
 int x = 1, y = 2;
@@ -340,7 +320,7 @@ void swap(int a, int b) {
   b = tmp;
 }
 ```
-The above example won't do anything. x will be 1 and y, 2. But with pointers and addresses this changes.  
+The above example won't do anything. x == 1 and y == 2. But with pointers and addresses this changes.  
 ```c
 int x = 1, y = 2;
 swap(&x, &y);
