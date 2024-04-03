@@ -352,3 +352,86 @@ int *p_vec = vec;
 vec[1] == *(vec + 1); //True, value is 2
 *(p_vec + 1) == 2; //True
 ```
+# Hash Tables
+Hash tables exist so we can access stored values at constant time.  
+The value you want to store goes through a hashing algorithm to become a index on a table.  
+## Hash function
+Hash function:  
+- fast to calculate.  
+- include all bits of the key.  
+- destribute the hashed information in a uniform almost random way. The ideal hash function would have 0 collisions.    
+```c
+int hash_func(int value, int M) {
+  return value % M;
+}
+```
+This is obviously a terrible hash function because it will create lots of collisions.  
+'M' represents the size of the hash table and because you need an index between 0 and M, you have to always use the % operand.  
+This example hashes an int, but you can hash any data by using a function that suits it.  
+## Collisions
+Collisions occur when 2 different values end up with the same index value after being hashed.
+```c
+int hash(int n, int size) {
+  return n % size;
+}
+//For a hash table of size 100
+int n = 100, m = 200;
+int hash_n = hash(n, 100);
+int hash_m = hash(m, 100); 
+```
+In the example, both hash_n and hash_m will be 0.  
+This is a collision.  
+### Collision resolution
+We will see 3 ways:
+- Seperate Chaining (Encadeamento Externo)  
+- Linear Probing (Procura Linear)
+- Double Hashing  
+#### Seperate Chaining
+With seperate chaining each index of the hash table holds a pointer that works as a linked list head. 
+When there is a conflict you insert the new item in the linked list.  
+
+To find a value on the table you get the hash value and go through the linked list.  
+
+To remove a value from the table it's the same as finding a value but instead you remove it from the linked list.  
+
+So, after hashing, you use linked list operations to manipulate it's elements.  
+#### Linear Probing
+With linear probing each index of the hash table holds an element.  
+If there is a conflict we move to the next index (i++) and if it is empty we insert the element at that index.  
+
+To search for a value, you go to the hash index and then check every index after that until you find the element or an empty table index.  
+
+To remove a value it's much like searching except you remove that value from the index if you find it. Remember to set that table's value to NULL or similar values.
+After removing the value you have to re-hash all the values after the removed values until you find an empty index.  
+#### Double Hashing
+Double hashing uses more less the same way of inserting values into the table but instead of checking the next index after a collision, it uses a second hashing function to calculate the step.  
+This step is calculated using the index value so every element that collided will have the same step value.  
+It then checks the index of the original hash function plus the step from the second hashing until it finds an empty index. This step should always be obtained using a prime and never match the size of the table.  
+To check a value you use the first hash result and then the step.  
+When you remove a value you have to rehash all elements from the list that are x steps from the index until you find an empty step.  
+### Advantages & Disadvantages
+Linked lists  
+- Advantages
+  - Easier to use linked list operations
+  - No need to recalculate hash values on removal
+- Disadvantages
+  - More memory usage due to linked lists  
+
+Linear Probing
+- Advantages
+  - Less memory usage
+  - Simple implementation
+- Disadvantages
+  - Clustering, indexes tend tobe filled in clusters  
+
+Double Hashing
+- Advantages
+  - Less memory usage
+  - Most efficient of the 3 at finding a value
+  - Less clustering than linear probing  
+- Disadvantages
+  - More complex implementation
+
+## Efficiency - Dinamic tables
+As the table fills the amount of misses increases as more and more conflicts happen. This decreases the efficiency of the table.  
+For this reason when the table cont
