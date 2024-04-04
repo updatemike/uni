@@ -82,7 +82,7 @@ int main() {
 static void getCommand() {
   int command = -1;
   while(command != 0) {
-    printf("1: Insert, 2: Remove, 3: Count 0: quit.\n");
+    printf("1: Insert, 2: Remove, 3: Count, 0: quit.\n");
     scanf("%d", &command);
     switch(command) {
       case 1:
@@ -97,7 +97,7 @@ static void getCommand() {
       case 0:
         break;
       default:
-        printf("1: Insert, 2: Remove, 3: Count 0: quit.\n");
+        printf("1: Insert, 2: Remove, 3: Count, 0: quit.\n");
         break;
     }
   }
