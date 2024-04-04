@@ -352,6 +352,194 @@ int *p_vec = vec;
 vec[1] == *(vec + 1); //True, value is 2
 *(p_vec + 1) == 2; //True
 ```
+# Dinamic Memory Allocation
+Up to now we've been using static memory, for example:
+```c
+Car vec[100];
+```
+This will allocate a block of memory with 100 sizeof(Car).  
+But we could also use dinamic allocation to alocate Car blocks as we need them.  
+## malloc(quantity * size)
+Allocates memory.  
+```c
+#include <stdlib.h>
+Car *car1 = malloc(sizeof(Car)); //for 1 Car, note Car is a struct
+Car *car_block = malloc(100 * sizeof(Car)); //allocate a block of 100 Car
+```
+### Malloc verification
+A malloc can change for many reasons such as memory fragmentation or lack of memory, so we need to check if it worked.
+```c
+if(car1 == NULL)
+  exit(-1); //Exit program, or handle the error in any way you want
+if(!car_block) { //Can evaluate with the ! operator
+  free(car1); //Don't forget to free other mallocs
+  exit(-1);
+}
+```
+## free(pointer)
+Frees allocated memory so it can be re-used. This is very important because allocated memory with malloc that is not free will cause memory leaks.  
+This is the reason why it's important to not lose or reasign a pointer to a malloc before freeing it.  
+```c
+#include <stdlib.h>
+free(car1);
+car1 = NULL;
+free(car_block);
+car_block = NULL;
+```
+IMPORTANT: Every malloc will need it's respective free at some point in the program's run.  
+## realloc(pointer, quantity * size)
+Resize the malloc. It can be smaller or bigger than the size of the original malloc.  
+Just like malloc you need to check if a realloc failed.  
+```c
+#include <stdlib.h>
+Car *car_block = malloc(100 * sizeof(Car));
+Car *temp = realloc(car_block, 50 * sizeof(Car));
+if(!temp) {
+  free(car_block);
+  exit(-1);
+} else 
+  car_black = temp;
+```
+As seen above, if the realloc succeeded we don't need to free car_block because realloc will do the free itself.  
+## calloc(quantity, size)
+Calloc is a malloc that is initiated to 0.  
+It is equivalent to doing a memset after a malloc.  
+```c
+Car *car_block = calloc(100, sizeof(Car));
+```
+## memset(pointer, value, size)
+Set the memory pointed by pointer to value for the size in bytes.  
+```c
+#include <string.h>
+memset(car_block, 0, 50 * sizeof(Car)) //Set the first 50 cars to 0 in memory
+```
+## Pointers and Structures
+This is the car structure:  
+```c
+typedef struct _car_ {
+  char licence[9];
+  float price;
+} Car;
+```
+You can use a pointer to point at a structure and change/use it's values.  
+```c
+Car car1 = {0};
+Car *p_car1 = &car1;
+(*p_car1).price = 10.10; //using * dereferencing anotation
+p_car1->price = 10.10; //using -> dereferencing anotation
+```
+One of the reasons why this is so important is the before mentioned passing of arguments to functions.  
+```c
+void changeCarPrice(Car car, int new_price);
+
+Car car1 = {0};
+float price = 10.10;
+changeCarPrice(&car1, price);
+
+void changeCarPrice(Car *p_car, int new_price) {
+  p_car->price = new_price;
+}
+```
+This way you can change the price of the car, while without pointers (*) and addresses (&) you would just be passing values and wouldn't be able to change the price of car1.  
+# Linked Lists
+## Advantages & Disadvantages
+Advantages  
+- Don't need to reserve big blocks of continuous memory like in arrays.  
+- Can be as long as you want. 
+- Can be as short as you need.   
+Disadvantages  
+- Have to go through the whole list to reach the Nth element.  
+- To know how many elements a list has you either have to keep count or count it every time.
+
+## List Structures
+Let's again revisit the Car structure but for use with linked lists.  
+```c
+//Single linked list
+typedef struct _car_ {
+  char licence[9];
+  float price;
+  //We need to use struct _car_ because the definition Caris only done at the end of the struct definition
+  struct _car_ *next; //Added so we can point at the next car
+} Car;
+
+//Double linked list
+typedef struct _car_ {
+  char licence[9];
+  float price;
+  //We need to use struct _car_ because the definition Caris only done at the end of the struct definition
+  struct _car_ *next; //Added so we can point at the next car
+  struct _car_ *prev; //Added so we can point at the previous car
+} Car;
+```
+To work with lists you would need a pointer normally called 'head' to point at the start of the list.  
+Sometimes a 'tail' is also useful if you want to add elements to the end of the list.  
+```c
+typedef struct _car_list_ {
+  Car *head; //Points to the first element of the list
+  Car *tail; //Points to the last element of the list. Not required.
+} Car_List;
+```
+## List operations
+### Length
+```c
+int length(Car *head) {
+  int count = 0;
+  Car *car = head;
+  while(car != NULL) {
+    count++;
+    car = car->next;
+  }
+  return count;
+}
+```
+### Insertion
+#### Tail Insertion
+```c
+//Single linked list
+void insert(Car_List *car_list, Car *car) {
+  if(!car_list->head)
+    car_list->head = car; //Insertion at head on empty list
+  else
+    car_list->tail->next = car; //Add car after the previous tail
+  car_list->tail = car; //Update tail
+}
+```
+#### Head Insertion
+```c
+void insert(Car_List *car_list, Car *car) {
+  car->next = car_list->head;
+  car_list->head = car;
+  if(car->next == NULL)
+    car_list->tail = car;
+}
+```
+### Print List
+```c
+void print(Car *head) {
+  link t;
+  for(t = head; t != NULL; t = t->next)
+    printf("%s", t->licence);
+}
+```
+### Delete 
+```c
+#include <string.h>
+void delete(Car_List *car_list, char *licence) {
+  Car *head = car_list->head;
+  Car car, prev;
+  for(car = head, prev = NULL; car != NULL; prev = car, car = car->next) {
+    if(strcmp(car->licence, licence) == 0) {
+      if(car == head)
+        head = car->next;
+      else
+        prev->next = car->next;
+      free(car);
+      break;
+    }
+  }
+  car_list->head = head;
+}
+```
 # Hash Tables
 Hash tables exist so we can access stored values at constant time.  
 The value you want to store goes through a hashing algorithm to become a index on a table.  
