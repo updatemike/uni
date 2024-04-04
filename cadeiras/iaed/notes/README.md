@@ -684,7 +684,8 @@ If the node has a left and right child, replace the node you removed with the no
 ## Max
 Due to how BSTs work the max value will always be the last node at the bottom to the right.  
 <details>
-  <summary>Code</summary>
+  <summary>Code</summary>  
+
   ```c
   link max(link h) {
     if (h == NULL || h->r == NULL)
@@ -694,6 +695,7 @@ Due to how BSTs work the max value will always be the last node at the bottom to
   }
   ```
 </details>
+
 ## Min
 Opposite of the max value, the min value will be the last node all the way to the left.  
 ```c
