@@ -642,7 +642,7 @@ occupancy       0.5       0.667     0.75      0.9
 hit             1.4       1.6       2.8       2.5
 misses          1.5       2.0       3.0       5.5
 ```
-# Binary Search Trees (Árvores binárias)
+# Binary Search Trees (Árvores Binárias)
 BSTs have a very simple premise:
 ```
                             Node
@@ -711,3 +711,18 @@ link min(link h) {
 For this we'll use a graphical representation of a BST.  
 ![BST](./images/0017-arv2.webp)
 ### Pre-Order
+Print the value of the node on the way down. Each node is printed before it's child.  
+For the above BST pre-order traversal would be:  
+20, 12, 8, 2, 9, 18, 32, 23, 45
+### In-Order
+Print the value of the node after passing it's left child tree. By hand you would print the value every time you pass under the node.  
+This will result in an ordered print of the BST.  
+For the above BST in-order traversal would be:  
+2, 8, 9, 12, 18, 20, 23, 32, 45
+### Post-Order
+Print the value of the node after traversing it's children. By hand you would print every time you cross the node on it's right going up.  
+For the above BST post-order traversal would be:  
+2, 9, 8, 18, 12, 23, 45, 32, 20  
+## Balanced Binary Trees
+
+
