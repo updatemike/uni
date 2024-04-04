@@ -662,7 +662,7 @@ typedef struct node {
   void *item;
   struct node *l;
   struct node *r;
-}
+} Node;
 ```
 ### Search
 To find a value in a BST you just have to compare it to the node from top to bottom.    
