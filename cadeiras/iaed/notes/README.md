@@ -709,5 +709,5 @@ link min(link h) {
 ```
 ## Traversal (Travessia)
 For this we'll use a graphical representation of a BST.  
-[BST](./images/0017-arv2.webp)
+![BST](./images/0017-arv2.webp)
 ### Pre-Order
