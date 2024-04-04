@@ -655,7 +655,8 @@ value           value               value             value
         . . .                               . . .
 ```
 Each value is a node and each node is the root of a tree so this premise follows from top to bottom of the BST.  
-## Node
+## Functionality
+### Node
 ```c
 typedef struct node {
   void *item;
@@ -663,25 +664,25 @@ typedef struct node {
   struct node *r;
 }
 ```
-## Search
+### Search
 To find a value in a BST you just have to compare it to the node from top to bottom.    
 If your value is equal to the node, you found it.   
 If your value is smaller than the node, move to the node's left child.  
 If your value is greater than the node, move to the node's right child.  
 If you reach a NULL child pointer, your value is NOT in the BST.  
 
-## Insert
+### Insert
 Insert the value in the first NULL pointer you find after following the rules.  
 If your value is equal to the node, the tree already has it.  
 If your value is smaller than the node, check the left child node.  
 If your value is greater than the node, check the right child node.  
 If you find a NULL child, insert a new node with the value there.  
-## Remove
+### Remove
 Removing has an extra step.  
 Follow the Search pattern until you find your node.  
 If the node has only 1 child, just replace the removed node with the child.   
 If the node has a left and right child, replace the node you removed with the node to the left with the greatest value. You can also use the smallest node to the right, if it suits your needs.  
-## Max
+### Max
 Due to how BSTs work the max value will always be the last node at the bottom to the right.  
 <details>
   <summary>Code</summary>  
@@ -696,7 +697,7 @@ Due to how BSTs work the max value will always be the last node at the bottom to
   ```
 </details>
 
-## Min
+### Min
 Opposite of the max value, the min value will be the last node all the way to the left.  
 ```c
 link min(link h) {
@@ -706,3 +707,7 @@ link min(link h) {
     return min(h->l);
 }
 ```
+## Traversal (Travessia)
+For this we'll use a graphical representation of a BST.  
+[BST](./images/0017-arv2.webp)
+### Pre-Order
