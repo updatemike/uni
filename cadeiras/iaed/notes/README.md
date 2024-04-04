@@ -642,3 +642,65 @@ occupancy       0.5       0.667     0.75      0.9
 hit             1.4       1.6       2.8       2.5
 misses          1.5       2.0       3.0       5.5
 ```
+# Binary Search Trees (Árvores binárias)
+BSTs have a very simple premise:
+```
+                            Node
+
+        Smaller                             Bigger
+        value                               value
+
+Smaller         Bigger              Smaller           Bigger
+value           value               value             value
+        . . .                               . . .
+```
+Each value is a node and each node is the root of a tree so this premise follows from top to bottom of the BST.  
+## Node
+```c
+typedef struct node {
+  void *item;
+  struct node *l;
+  struct node *r;
+}
+```
+## Search
+To find a value in a BST you just have to compare it to the node from top to bottom.    
+If your value is equal to the node, you found it.   
+If your value is smaller than the node, move to the node's left child.  
+If your value is greater than the node, move to the node's right child.  
+If you reach a NULL child pointer, your value is NOT in the BST.  
+
+## Insert
+Insert the value in the first NULL pointer you find after following the rules.  
+If your value is equal to the node, the tree already has it.  
+If your value is smaller than the node, check the left child node.  
+If your value is greater than the node, check the right child node.  
+If you find a NULL child, insert a new node with the value there.  
+## Remove
+Removing has an extra step.  
+Follow the Search pattern until you find your node.  
+If the node has only 1 child, just replace the removed node with the child.   
+If the node has a left and right child, replace the node you removed with the node to the left with the greatest value. You can also use the smallest node to the right, if it suits your needs.  
+## Max
+Due to how BSTs work the max value will always be the last node at the bottom to the right.  
+<details>
+  <summary>Code</summary>
+  ```c
+  link max(link h) {
+    if (h == NULL || h->r == NULL)
+        return h;
+    else
+        return max(h->r);
+  }
+  ```
+</details>
+## Min
+Opposite of the max value, the min value will be the last node all the way to the left.  
+```c
+link min(link h) {
+  if (h == NULL || h->l == NULL)
+    return h;
+  else
+    return min(h->l);
+}
+```
