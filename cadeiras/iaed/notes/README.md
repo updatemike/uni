@@ -688,7 +688,7 @@ Due to how BSTs work the max value will always be the last node at the bottom to
   <summary>Code</summary>  
 
   ```c
-  link max(link h) {
+  Node *max(Node *h) {
     if (h == NULL || h->r == NULL)
         return h;
     else
@@ -700,7 +700,7 @@ Due to how BSTs work the max value will always be the last node at the bottom to
 ### Min
 Opposite of the max value, the min value will be the last node all the way to the left.  
 ```c
-link min(link h) {
+Node *min(Node *h) {
   if (h == NULL || h->l == NULL)
     return h;
   else
