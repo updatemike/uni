@@ -598,7 +598,7 @@ It then checks the index of the original hash function plus the step from the se
 To check a value you use the first hash result and then the step.  
 When you remove a value you have to rehash all elements from the list that are x steps from the index until you find an empty step.  
 ### Advantages & Disadvantages
-Linked lists  
+Seperate Chaining 
 - Advantages
   - Easier to use linked list operations
   - No need to recalculate hash values on removal
@@ -619,7 +619,26 @@ Double Hashing
   - Less clustering than linear probing  
 - Disadvantages
   - More complex implementation
+In general
+- Advantages
+  - In general element search/insertion is done at constant complexity, but in extreme edge cases it'll still be linear
+- Disadvantages
+  - Hashing can be computationally heavy
+  - It uses much more memory than other methods like linked lists
 
 ## Efficiency - Dinamic tables
 As the table fills the amount of misses increases as more and more conflicts happen. This decreases the efficiency of the table.  
-For this reason when the table cont
+For this reason when the table reaches a certain threshhold (normally 50%), the table is resized to double it's current size.  
+When we do this we have to re-hash all the elements of the table using the new table size for the % operation.  
+```
+Linear Probing
+occupancy       0.5       0.667     0.75      0.9
+hit             1.5       2.0       3.0       5.5
+misses          2.5       5.0       8.5       55.5
+```
+```
+Double hashing
+occupancy       0.5       0.667     0.75      0.9
+hit             1.4       1.6       2.8       2.5
+misses          1.5       2.0       3.0       5.5
+```
