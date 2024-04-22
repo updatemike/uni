@@ -38,13 +38,13 @@ sra       x10,             x10,           x11            x10 =
 ### Exemplo de ADD:
 ```
 x10 0  0  1  1
-x11 0  1  1  1
-vai 1  1  1   
+x11 0  1  1  1  +
+vai 1  1  1     +
 s1  1  2  3  2
 s2  1  0  1  0
 ```
 - s1 - somar os bits
-- - se soma der 2 ou 3 passa-se +1 para o proximo bit mais significativo (vai)
+- - se soma der 2 ou 3 passa-se +1 (vai) para o proximo bit mais significativo
 - s2 - se soma de bits mais o 'vai' for 2
 - - coloca-se 0 no valor final
 - s2 - se a soma de bit mais o 'vai' for 3
@@ -53,16 +53,17 @@ s2  1  0  1  0
 ### Exemplo de SUB:
 ```
 x10 0  1  0  1
-x11 0  0  1  1
-vai   -1
+x11 0  0  1  1  -
+vai    1        -
 s1  0  0 -1  0
 ```
 - s1 - subtrair os bits
-- - se subtração der -1 passa-se -1 para o próximo bit mais significativo (vai)
-- - se subtração der 1 ou 0 o resultado final para o bit é respectivamente 1 ou 0
-- - se subtração der -1 o resultado final para o bit é 1
+- - se subtração mais 'vai' der -1 passa-se -1 (vai) para o próximo bit mais significativo
+- - se subtração mais 'vai' der 1 ou 0 o resultado final para o bit é respectivamente 1 ou 0
+- - se subtração mais 'vai' der -1 o resultado final para o bit é 1
 
 * Para poupar 1 registo não existe subi, faz-se addi com valor negativo  
+
 ### Exemplo de AND:
 ```
 x10  0  0  1  1
@@ -70,6 +71,7 @@ x11  0  1  0  1
 res  0  0  0  1
 ```
 * AND - both A and B  
+
 ### Exemplo de OR:
 ```
 x10  0  0  1  1
@@ -77,6 +79,7 @@ x11  0  1  0  1
 res  0  1  1  1
 ```
 * OR - either A or B  
+
 ### Exemplo de XOR:
 ```
 x10  0  0  1  1
@@ -84,6 +87,7 @@ x11  0  1  0  1
 res  0  1  1  0
 ```
 * Exclusive OR - A or B but not both or neither  
+
 ### Exemplo de SLL (shift left):
 ```
 x10 = 0011 = 3
@@ -92,6 +96,7 @@ desloca 0011 2 bits para a esquerda e acrescenta 0 a direita
 res = 1100 = 12
 ```
 * SLL vai acabar por ser x10 = x10 * 2^x11. Neste caso x10 = 3 * 2² = 12  
+
 ### Exemplo de SRL (shift right):
 ```
 x10 = 1100 = 12
@@ -100,6 +105,7 @@ desloca 1100 2 bits para a direita e acrescenta 0 a esquerda
 res = 0011 = 3
 ```
 * SRL vai acabar por ser x10 = x10 / 2^x11. Neste caso x10 = 12 / 2² = 3. Esta divisão é inteira!  
+
 ### Exemplo de SRA (shift right algoritmico)  
 * O SRL acrescenta 0 ao bit mais significativo quando se faz shift bit a bit.  
 * Isto origina problemas com o sinal de números binários de complemento 2 (bit mais significativo).  
