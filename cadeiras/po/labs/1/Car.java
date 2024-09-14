@@ -13,7 +13,7 @@ import java.util.Scanner;
  * - _speed     : int
  * - _break     : boolean
  * -----------------------
- * + Car(brand:String, max:int, t1:Tyre, t2:Tyre, t3:Tyre, t4:Tyre)
+ * + Car(brand:String, max:int, tyres:Tyre[])
  * + getMileage()           : float
  * + getBrand()             : String
  * + checkTyresFlat()       : boolean
@@ -30,7 +30,7 @@ public class Car {
     private int _maxSpeed;
     private int _speed;
     private boolean _break;
-    private Tyre[] _Tyres = new Tyre[4];
+    private Tyre[] _tyre = new Tyre[4];
     private String _options = 
         "Options:\n" +
         "Exit (0), Show Options (1), Print Brand (2),\n" + 
@@ -38,13 +38,13 @@ public class Car {
         "Check break status (5), Check if car is moving (6)\n" +
         "Set new mileage (7), Change break status (8), Change speed (9)"; 
 
-    public Car(String brand, int maxSpeed, Tyre Tyres[]) {
+    public Car(String brand, int maxSpeed, Tyre tyres[]) {
         _brand = brand;
         _maxSpeed = maxSpeed;
         _break = true;
         
         for(int i = 0; i < 4; i++) {
-            _Tyres[i] = Tyres[i];
+            _tyre[i] = tyres[i];
         }
     }
 
@@ -57,7 +57,7 @@ public class Car {
     }
 
     public boolean checkTyresFlat() {
-        for(Tyre Tyre:_Tyres) if(Tyre.isFlat()) return true;
+        for(Tyre tyre:_tyre) if(tyre.isFlat()) return true;
         return false;
     }
 
