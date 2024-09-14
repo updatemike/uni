@@ -107,6 +107,7 @@ public class Pen {
             command = scanner.nextInt();
             switch (command) {
                 case 0:
+                    System.out.println("Goodbye.");
                     break;
                 case 1:
                     p.printOptions();

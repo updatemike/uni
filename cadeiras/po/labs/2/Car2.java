@@ -11,7 +11,7 @@
  * - setTyres(Tyre[] tires)     : void
  * + getMileage()               : float
  * + getBrand()                 : String
- * + getmaxSpeed()              : int
+ * + getMaxSpeed()              : int
  * + hasFlat()                  : boolean
  * + setMileage(m:float)        : void
  * + changeTyres(tyres:Tyre[])  : boolean

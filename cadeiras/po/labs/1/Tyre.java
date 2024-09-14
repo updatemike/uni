@@ -70,6 +70,7 @@ public class Tyre {
             command = scanner.nextInt();
             switch (command) {
                 case 0:
+                    System.out.println("Goodbye.");
                     break;
                 case 1:
                     t.printOptions();
