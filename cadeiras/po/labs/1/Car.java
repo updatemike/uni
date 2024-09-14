@@ -5,10 +5,7 @@ import java.util.Scanner;
  * -----------------------
  * - _brand     : String
  * - _mileage   : float
- * - _t1        : Tyre
- * - _t2        : Tyre
- * - _t3        : Tyre
- * - _t4        : Tyre
+ * - _tyres     : Tyre[]
  * - _maxSpeed  : int
  * - _speed     : int
  * - _break     : boolean
