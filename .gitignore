@@ -3,3 +3,5 @@ a.out
 proj1
 proj2
 tasks.json
+*.pdf
+*.class
