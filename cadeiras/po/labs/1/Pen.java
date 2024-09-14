@@ -9,13 +9,15 @@ import java.util.Scanner;
  * - _options   : String
  * -----------------------
  * + Pen (capacity : int, brand : String, color : String)
- * + getColor() : String
- * + getBrand() : String
- * + getQUantity() : int
- * + write(input : String) : void
- * + refill(q : int) : int
- * + refill(q : int, color : String) : int
- * + printOptions() : void
+ * + getColor()             : String
+ * + getBrand()             : String
+ * + getCapacity()          : int
+ * + getQUantity()          : int
+ * + write(input:String)    : void
+ * + refill(q:int)          : int
+ * + refill(q:int, color    : String) : int
+ * + printOptions()         : void
+ * + isEqual(pen:Pen)       : boolean
  */
 
 public class Pen {
@@ -27,7 +29,8 @@ public class Pen {
         "Options:\n" +
         "Exit (0), Show Options (1), Print Brand (2),\n" + 
         "Print Color (3), Print Remaining Ink (4),\n" + 
-        "Write Text (5), Refill Pen (6), Refill Pen with new color (7)";
+        "Write Text (5), Refill Pen (6), Refill Pen with new color (7),\n" + 
+        "Make a new pen and check if they are equal (8).";
     
     public Pen (int capacity, String brand, String color) {
         _quantity = _capacity = capacity;
@@ -39,6 +42,9 @@ public class Pen {
     }
     public String getBrand() {
         return _brand;
+    }
+    public int getCapacity() {
+        return _capacity;
     }
     public int getQuantity() {
         return _quantity;
@@ -71,10 +77,15 @@ public class Pen {
         System.out.println(_options);
     }
 
+    public boolean isEqual(Pen pen) {
+        return (_brand.equals(pen.getBrand()) && _color.equals(pen.getColor()) && _capacity == pen.getCapacity());
+    }
+
     public static void main(String[] args) {
         int command = -1;
         String str;
         int n;
+        Pen p2;
         Scanner scanner = new Scanner(System.in);
         
         System.out.println("Let's create a pen.");
@@ -128,6 +139,17 @@ public class Pen {
                     str = scanner.nextLine();
                     n = p.refill(n, str);
                     System.out.println(n == -1 ? "Pen has different colored Ink." : "You have " + n + " extra Ink.");
+                case 8:
+                    System.out.println("Let's create a pen.");
+                    scanner.nextLine();
+                    System.out.print("Color (string): ");
+                    color = scanner.nextLine();
+                    System.out.print("Brand (string): ");
+                    brand = scanner.nextLine();
+                    System.out.print("Ink Capacity (int): ");
+                    capacity = scanner.nextInt();
+                    p2 = new Pen(capacity, brand, color);
+                    System.out.println(p.isEqual(p2) ? "The pen is the same." : "The pen is diferent.");
             }
         }
         scanner.close();
