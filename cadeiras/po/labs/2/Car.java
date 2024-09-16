@@ -22,12 +22,12 @@ import java.util.Scanner;
  */
 
 public class Car {
-    private String _brand;
+    private final String BRAND;
     private float _mileage;
     private int _maxSpeed;
     private int _speed;
     private boolean _break;
-    private Tyre[] _tyre = new Tyre[4];
+    private Tyre[] _tyres = new Tyre[4];
     private String _options = 
         "Options:\n" +
         "Exit (0), Show Options (1), Print Brand (2),\n" + 
@@ -36,12 +36,13 @@ public class Car {
         "Set new mileage (7), Change break status (8), Change speed (9)"; 
 
     public Car(String brand, int maxSpeed, Tyre tyres[]) {
-        _brand = brand;
+        BRAND = brand;
+        _mileage = 0;
         _maxSpeed = maxSpeed;
         _break = true;
-        
+        _speed = 0;
         for(int i = 0; i < 4; i++) {
-            _tyre[i] = tyres[i];
+            _tyres[i] = tyres[i];
         }
     }
 
@@ -50,11 +51,11 @@ public class Car {
     }
 
     public String getBrand() {
-        return _brand;
+        return BRAND;
     }
 
     public boolean checkTyresFlat() {
-        for(Tyre tyre:_tyre) if(tyre.isFlat()) return true;
+        for(Tyre tyre:_tyres) if(tyre.isFlat()) return true;
         return false;
     }
 
@@ -75,9 +76,9 @@ public class Car {
         if(_break) _speed = 0;
     }
 
-    public void setSpeec(int speed) {
-        if (speed > _maxSpeed || speed < 0 || _break) return;
-        _speed = speed;
+    public void setSpeed(int speed) {
+        int s = speed > _maxSpeed ? _maxSpeed : speed;
+        _speed = _break ? 0 : s;
     }
 
     public void printOptions() {
@@ -143,7 +144,7 @@ public class Car {
                     break;
                 case 9:
                     System.out.print("New speed: ");
-                    car.setSpeec(scanner.nextInt());
+                    car.setSpeed(scanner.nextInt());
                     break;
             }
 
