@@ -1,9 +1,16 @@
 public class Number3 {
     private int _val;
+    private static Number3[] _numbers = new Number3[100];
 
-    public Number3() {}
-    public Number3(int n) {
+    private Number3() {}
+    private Number3(int n) {
         _val = n;
+    }
+    public static Number3 createNumber(int value) {
+        if(_numbers[value] != null) return _numbers[value];
+        Number3 number = new Number3(value);
+        _numbers[value] = number;
+        return number;
     }
     public void set(int n) {
         _val = n;
@@ -23,13 +30,15 @@ public class Number3 {
         return n;
     }
     public static void main(String[] args) {
-        Number3 n1 = new Number3();
-        Number3 n2 = new Number3(20);
+        Number3 n1 = Number3.createNumber(0);
+        Number3 n2 = Number3.createNumber(20);
         System.out.println("n1: " + n1 + "\nn2: " + n2);
         System.out.println("n1 == n2? " + n1.equals(n2));
         System.out.println("Greater number: " + n1.getGreater(n2));
         n1.set(20);
         System.out.println("n1: " + n1 + "\nn2: " + n2);
         System.out.println("n1 == n2? " + n1.equals(n2));
+        Number3 n3 = Number3.createNumber(20);
+        System.out.println("n3 is a new number? " + (n3 != n2));
     }
 }

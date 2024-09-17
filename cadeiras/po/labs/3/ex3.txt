@@ -34,8 +34,8 @@ public class ComputeSum {
   
   private int _total;                           //_for attribute name
 
-  public computeSum(int i) {                    // lowercase for method name, int args should use i, j, k, m or n
-    _total = i;                                 // i deveria ser chamada total em vez de i talvez
+  public ComputeSum(int total) {                    // method args should use better names like total
+    _total = total;                                 // i deveria ser chamada total em vez de i talvez
   }
 
   // compute sum of the elements in the vector
@@ -43,7 +43,7 @@ public class ComputeSum {
     int i = 0;
     _total = 0;
 
-    while (i < myVector.length) {
+    while (i < myVector.length) {               // espaçamento nos operadores
       _total += myVector[i++];
     }       
   }
