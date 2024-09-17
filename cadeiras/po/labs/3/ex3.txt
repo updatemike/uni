@@ -1,0 +1,58 @@
+/*
+public class ComputeSum {
+  public static ComputeSum _Sum = null;
+  
+  private int total;
+
+  public ComputeSum(int t) {
+    total = t;
+  }
+
+  // compute sum of the elements in the vector
+  public void vectorSum (int[] my_vector) {
+    int i = 0;
+    total = 0;
+
+    while (i<my_vector.length) {
+      total += my_vector[i++];
+    }       
+  }
+
+  private int get_Total() {
+    return total;
+  }
+
+  private void SetTotal(int NewTotal) {
+    total = NewTotal;
+  }
+} 
+*/
+
+
+public class ComputeSum {
+  public static ComputeSum _sum = null;         //lowercase letter for atribute name
+  
+  private int _total;                           //_for attribute name
+
+  public computeSum(int i) {                    // lowercase for method name, int args should use i, j, k, m or n
+    _total = i;                                 // i deveria ser chamada total em vez de i talvez
+  }
+
+  // compute sum of the elements in the vector
+  public void vectorSum (int[] myVector) {      //myVector -> use camelCase not _
+    int i = 0;
+    _total = 0;
+
+    while (i < myVector.length) {
+      _total += myVector[i++];
+    }       
+  }
+
+  private int getTotal() {                      //camelCase not _
+    return _total;
+  }
+
+  private void setTotal(int newTotal) {         //start with lower case for setTotal and newTotal
+    _total = newTotal;                          
+  }
+}
