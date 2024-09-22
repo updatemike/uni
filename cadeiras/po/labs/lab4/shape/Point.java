@@ -1,5 +1,3 @@
-package lab4;
-
 public class Point {
     private float _positionX;
     private float _positionY;
@@ -18,5 +16,8 @@ public class Point {
     }
     public float getY() {
         return _positionY;
+    }
+    public String toString() {
+       return "x:" + _positionX + " y: " + _positionY;
     }
 }

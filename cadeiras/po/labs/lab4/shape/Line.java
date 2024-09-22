@@ -1,9 +1,7 @@
-package lab4;
-
 public class Line extends Shape{
     private Point _pointB;
-    public Line(int id, Point pointA, Point pointB) {
-        super(id, pointA);
+    public Line(Point pointA, Point pointB) {
+        super(pointA);
         _pointB = pointB;
     }
     @Override
@@ -12,5 +10,7 @@ public class Line extends Shape{
         _pointB.moveX(dX);
         _pointB.moveY(dY);
     }
-    public void draw() {}
+    public String draw() {
+        return "" + getID() + " Line[" + getPointToString() + " " + _pointB.toString();
+    }
 }

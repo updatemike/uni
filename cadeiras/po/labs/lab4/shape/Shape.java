@@ -1,13 +1,15 @@
-package lab4;
-
 public abstract class Shape {
     private int _id;
     private Point _point;
     private Editor _editor;
+    private static int _idCounter = 0;
 
-    protected Shape(int id, Point point) {
-        _id = id;
+    protected Shape(Point point) {
+        _id = _idCounter++;
         _point = point;
+    }
+    public int getID() {
+        return _id;
     }
     public void setEditor(Editor editor) {
         _editor = editor;
@@ -19,5 +21,9 @@ public abstract class Shape {
         _point.moveX(dX);
         _point.moveY(dY);
     }
-    protected abstract void draw();
+    protected String getPointToString() {
+        return _point.toString();
+    }
+    protected abstract String draw();
+
 }
