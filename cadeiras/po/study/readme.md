@@ -7,10 +7,14 @@ import packagename.A;
 ```
 - Follows file path
 - Dog is in study/inheritance
-- - package inheritance;
+```java
+package inheritance;
+```
 - Main is in study/
-- - import inheritance.Dog; //import Dog
-- - import packages.*; //import all inside inheritance file/package
+```java
+import inheritance.Dog; //import Dog
+import packages.*; //import all inside inheritance file/package
+```
 - Visibility
 - - package-private is accessible to anyone in the same package and that imports the package/file
 
@@ -30,11 +34,15 @@ class Dog extends Animal {}
 ```
 - "is a" relationship
 - Dog inherits all fields and methods from Animal
-- if I create Animal doggo = new Dog();
+```java
+Animal doggo = new Dog();
+```
 - - doggo is of static (at compile) class Animal but dynamic (at runtime) class Dog
 - - methods called with doggo.method() will first look for the method in Dog then in Animal if they don't exist
 - - methods that don't exist in animal even if Dog has them aren't accessible, needs casting
-- - (Dog)doggo.method()
+```java
+(Dog)doggo.method()
+```
 - - downcast needs to be explicit, upcast can be implicit
 - Dog doesn't inherit any private methods of Animal and can't directly access private fields of Animal
 
@@ -51,8 +59,8 @@ method() {}
 # Interface
 [Video](https://www.youtube.com/watch?v=GhslBwrRsnw)
 ```java
-- public Interface B {}
-- class A implements B, C {}
+public Interface B {}
+class A implements B, C {}
 ```
 
 - template applied to class
