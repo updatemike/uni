@@ -71,7 +71,7 @@ class A implements B, C {}
 - fields behave like public final static fields
 
 # Enumerated 
-[Video]{https://www.youtube.com/watch?v=TCMhP8trGwY}
+[Video](https://www.youtube.com/watch?v=TCMhP8trGwY)
 - ordered listing of constant items in a collection
 - each item behaves like an Object
 - items cannot be changed after compilation
