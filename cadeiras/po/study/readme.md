@@ -1,9 +1,9 @@
 # Packages
-
-- package packagename;
-- import packagename.*;
-- import packagename.A;
----
+```java
+package packagename;
+import packagename.*;
+import packagename.A;
+```
 - Follows file path
 - Dog is in study/inheritance
 - - package inheritance;
@@ -14,18 +14,18 @@
 - - package-private is accessible to anyone in the same package and that imports the package/file
 
 # Overloading
-
-- method(){}
-- method(String str) {}
-- method(int i) {}
----
+```java
+method(){}
+method(String str) {}
+method(int i) {}
+```
 - wich method will be called depends on the arguments of the call
 - the signature of a method in java is it's name and the parameters (type and number)
 
 # Inheritance
-
-- class Dog extends Animal {}
----
+```java
+class Dog extends Animal {}
+```
 - "is a" relationship
 - Dog inherits all fields and methods from Animal
 - if I create Animal doggo = new Dog();
@@ -37,18 +37,20 @@
 - Dog doesn't inherit any private methods of Animal and can't directly access private fields of Animal
 
 # Override
+```java
+@Override
+method() {}
+```
 
-- @Override
-- method() {}
----
 - subclass overrides method from superclass
 - when method is called for Dog, java looks in Dog first then looks in Animal
 
 # Interface
-
+```java
 - public Interface B {}
 - class A implements B, C {}
----
+```
+
 - template applied to class
 - "can be", "can do" relationship
 - class can implement multiple interfaces
@@ -80,7 +82,6 @@ HashMap<String, Dog> dogs = new HashMap<>();
 ```
 - like hash Maps
 ---
-
 - bounded types
 - limit the types that can be used in generic
 - use extends for both class and interfaces
