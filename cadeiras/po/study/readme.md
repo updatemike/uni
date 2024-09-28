@@ -1,4 +1,5 @@
 # Packages
+[Video](https://www.youtube.com/watch?v=NZ7NfZD8T2Y)
 ```java
 package packagename;
 import packagename.*;
@@ -23,6 +24,7 @@ method(int i) {}
 - the signature of a method in java is it's name and the parameters (type and number)
 
 # Inheritance
+[Video](https://www.youtube.com/watch?v=Zs342ePFvRI)
 ```java
 class Dog extends Animal {}
 ```
@@ -37,6 +39,7 @@ class Dog extends Animal {}
 - Dog doesn't inherit any private methods of Animal and can't directly access private fields of Animal
 
 # Override
+[Video](https://www.youtube.com/watch?v=E-0MMeNi5Cw)
 ```java
 @Override
 method() {}
@@ -46,6 +49,7 @@ method() {}
 - when method is called for Dog, java looks in Dog first then looks in Animal
 
 # Interface
+[Video](https://www.youtube.com/watch?v=GhslBwrRsnw)
 ```java
 - public Interface B {}
 - class A implements B, C {}
@@ -58,7 +62,7 @@ method() {}
 - fields behave like public final static fields
 
 # Generics
-
+[Video](https://www.youtube.com/watch?v=jUcAyZ5OUm0)
 - methods
 ```java
 //print method accepts any type
