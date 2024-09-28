@@ -1,6 +1,7 @@
 import inheritance.Cat;
 import inheritance.Dog;
 import interfaces.ToString;
+import enumerated.Season;
 
 public class Main {
     //Generic method
@@ -23,5 +24,9 @@ public class Main {
         dog.makeNoise();
         cat.makeNoise();
         cat.flee();
+
+        //enums
+        Season season = Season.SPRING;
+        print(season);
     }
 }

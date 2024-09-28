@@ -13,10 +13,11 @@ package inheritance;
 - Main is in study/
 ```java
 import inheritance.Dog; //import Dog
-import packages.*; //import all inside inheritance file/package
+import inheritance.*; //import all inside inheritance file/package
 ```
 - Visibility
-- - package-private is accessible to anyone in the same package and that imports the package/file
+- - package-private is accessible to anyone in the same package
+- - importing a file doesn't affect visibility, it just allows you to use a name instead of package.name
 
 # Overloading
 ```java
@@ -68,6 +69,34 @@ class A implements B, C {}
 - class can implement multiple interfaces
 - methods behave like abstract methods
 - fields behave like public final static fields
+
+# Enumerated 
+[Video]{https://www.youtube.com/watch?v=TCMhP8trGwY}
+- ordered listing of constant items in a collection
+- each item behaves like an Object
+- items cannot be changed after compilation
+- you can assign values (fields) to each item (contructor) and use those fields with methods
+```java
+public enum Season{
+    //enum items and values
+    WINTER("cold", "rainy");
+    //enum fields
+    String _temp;
+    String _weather;
+    //enum constructor
+    Season(String temp, String weather) {
+        _temp = temp;
+        _weather = weather;
+    }
+    //enum methods
+    public String toString() {
+        return "Temperature: " + _temp + " Weather: " + _weather;
+    }
+}
+// Instanciating a Season and calling method
+Seaon season = Season.SPRING;
+season.toString();
+```
 
 # Generics
 [Video](https://www.youtube.com/watch?v=jUcAyZ5OUm0)
