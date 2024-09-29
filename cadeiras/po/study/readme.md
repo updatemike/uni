@@ -164,6 +164,7 @@ for(Animal animal : animals){
 - When a Collection is changed (add, remove) you can't keep iterating it: break;
 - To do multiple remove ops: iter.remove();
 ## Set
+[video](https://www.youtube.com/watch?v=QvHBHuuddYk)
 - Collection with only unique objects
 - boolean equals(Object), should override
 - not ordered
@@ -188,6 +189,7 @@ import java.util.TreeSet;
 TreeSet<Animal> animals = new TreeSet<>();
 ```
 ## List
+[video](https://www.youtube.com/watch?v=5dscMs2hnDI)
 - has duplicates, ordered
 - has index based operations
 - uses ListIterator instad of Iterator
@@ -212,9 +214,9 @@ LinkedList<Animal> animals = new LinkedList<>();
 ```java
 import java.util.Collections;
 ```
--useful methods
+- useful methods
 ```java
-Collections.sort(List<> list);
+Collections.sort(List<> list); //implements Comparable<Type> and compareTo(Object o) method
 Collections.sort(List<> list, Comparator comp);
 Collections.unmodifiableCollection(list)
 ```
@@ -232,9 +234,17 @@ public class EmployeeComparatorSalaryName implements Comparator<Employee>{
         return compare;
     }   
 }
+public class Company {
+    public Collection<Employee> getOrderedSalaryName() {
+        ArrayList<Employee> list = new ArrayList<>(_employees);
+        Collections.sort(list, new EmployeeComparatorSalaryName());
+        return Collections.unmodifiableCollection(list);
+    }
+}
 ```
 
 # Map<K, V> (interface)
+[video](https://www.youtube.com/watch?v=H62Jfv1DJlU)
 ```java
 import java.util.Map;
 Map<String, Animal> animals = new HashMap<>()
