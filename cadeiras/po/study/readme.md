@@ -161,3 +161,20 @@ for(Animal animal : animals){
 ```
 - When a Collection is changed (add, remove) you can't keep iterating it: break;
 - To do multiple remove ops: iter.remove();
+## Set
+- Collection with only unique objects
+- boolean equals(Object), should override
+- not ordered
+### HashSet
+```java
+import java.util.HashSet;
+HashSet<Animal> animals = new HashSet<>();
+```
+- int hashCode(), should override (ex: Only use name of animal, needs to be unique)
+## SortedSet
+```java
+import java.util.SortedSet;
+SortedSet<Animal> animals = new SortedSet<>();
+public class Animal implements Comparable<Animal>
+```
+- int compareTo(T a), should override
