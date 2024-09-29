@@ -133,19 +133,21 @@ public static <T extends ToString> void print(T thing) {
     System.out.println(thing.toString());
 }
 ```
-# Collection
+# Collection<T> (interface)
 [long video list about data structures used](https://www.youtube.com/playlist?list=PLUDwpEzHYYLu9-xrx5ykNH8wmN1C1qClk)
 ```java
 import java.util.Collection;
-Collection<Animal> animals = new Collection<>();
+Collection<Animal> animals = new ArrayList<>();
 ```
 - methods
-- - boolean add()
-- - boolean remove()
-- - void clear()
-- - boolean contains(T)
-- - boolean isEmpty()
-- - int size()
+```java
+boolean add()
+boolean remove()
+void clear()
+boolean contains(T)
+boolean isEmpty()
+int size()
+```
 ## Iterator and For Each
 ```java
 import java.util.Iterator;
@@ -165,6 +167,7 @@ for(Animal animal : animals){
 - Collection with only unique objects
 - boolean equals(Object), should override
 - not ordered
+- make usre you can't make 2 instances of the object equal and can't change the haschode
 ### HashSet
 ```java
 import java.util.HashSet;
@@ -172,9 +175,91 @@ HashSet<Animal> animals = new HashSet<>();
 ```
 - int hashCode(), should override (ex: Only use name of animal, needs to be unique)
 ## SortedSet
-```java
-import java.util.SortedSet;
-SortedSet<Animal> animals = new SortedSet<>();
-public class Animal implements Comparable<Animal>
-```
+- an ordered Set
 - int compareTo(T a), should override
+```java
+public class Animal implements Comparable<Animal> {
+    public int compareTo(Animal a) {}
+}
+```
+### TreeSet
+```java
+import java.util.TreeSet;
+TreeSet<Animal> animals = new TreeSet<>();
+```
+## List
+- has duplicates, ordered
+- has index based operations
+- uses ListIterator instad of Iterator
+### ArrayList
+```java
+import java.util.ArrayList;
+ArrayList<Animal> animals = new ArrayList<>();
+```
+- uses an array and resizes it when full
+- add with index or at end
+### LinkedList
+```java
+import java.util.LinkedList;
+LinkedList<Animal> animals = new LinkedList<>();
+```
+- uses double linked list
+- add with index, end or start
+- using index is a O(n) operation because it has to iterate
+- can access from start or end of List
+
+# Collections
+```java
+import java.util.Collections;
+```
+-useful methods
+```java
+Collections.sort(List<> list);
+Collections.sort(List<> list, Comparator comp);
+Collections.unmodifiableCollection(list)
+```
+- remember List<> needs to be initiated and so do Comparators
+- sort only works on List types
+## Comparator
+```java
+import java.util.Comparator;
+public class EmployeeComparatorSalaryName implements Comparator<Employee>{
+    @Override
+    public int compare(Employee e, Employee e2) {
+        // int compare = ((Integer)e.getSalary()).compareTo(((Integer)e2.getSalary()));
+        int compare = ((Integer)e.getSalary()).compareTo(((Integer)e2.getSalary()));
+        if(compare == 0) return e.getName().compareTo(e2.getName());
+        return compare;
+    }   
+}
+```
+
+# Map<K, V> (interface)
+```java
+import java.util.Map;
+Map<String, Animal> animals = new HashMap<>()
+```
+- key - value pair
+- unique key
+- methods
+```java
+V put(K key, V value)
+V remove(Object key)
+V get(Object key)
+boolean containsKey(Object key)
+int size()
+Set<K> keySet()
+Collection<V> values()
+void clear()
+
+```
+## Iterating
+- keySet()
+- values()
+## HashMap
+- unorderes
+- uses hashcode
+
+## TreeMap
+- ordered
+- compareTo() or comparator

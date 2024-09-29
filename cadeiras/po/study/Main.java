@@ -41,7 +41,7 @@ public class Main {
 
         //set
         //HashSet<Animal> animals = new HashSet<>();
-        //sortedSet
+        //sorted set
         TreeSet<Animal> animals = new TreeSet<>();
 
 
