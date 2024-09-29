@@ -13,6 +13,10 @@ public class Cat extends Animal implements Predator, Prey{
     public void makeNoise() {
         System.out.println("MEOW!");
     }
+    @Override
+    protected String getSpecies() {
+        return "Feline";
+    }
     // Override interface methods
     @Override
     public void hunt() {

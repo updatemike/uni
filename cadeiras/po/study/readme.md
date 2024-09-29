@@ -133,3 +133,31 @@ public static <T extends ToString> void print(T thing) {
     System.out.println(thing.toString());
 }
 ```
+# Collection
+[long video list about data structures used](https://www.youtube.com/playlist?list=PLUDwpEzHYYLu9-xrx5ykNH8wmN1C1qClk)
+```java
+import java.util.Collection;
+Collection<Animal> animals = new Collection<>();
+```
+- methods
+- - boolean add()
+- - boolean remove()
+- - void clear()
+- - boolean contains(T)
+- - boolean isEmpty()
+- - int size()
+## Iterator and For Each
+```java
+import java.util.Iterator;
+Iterator<Animal> iter = animals.iterator()
+while(iter.hasNext()) {
+    Animal a = iter.next();
+    //Do something
+}
+
+for(Animal animal : animals){
+    //Do something
+}
+```
+- When a Collection is changed (add, remove) you can't keep iterating it: break;
+- To do multiple remove ops: iter.remove();

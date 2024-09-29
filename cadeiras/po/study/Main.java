@@ -1,7 +1,13 @@
-import inheritance.Cat;
-import inheritance.Dog;
+import inheritance.*;
 import interfaces.ToString;
 import enumerated.Season;
+//Collection
+import java.util.Collection;
+//Iterator
+import java.util.Iterator;
+//Set
+import java.util.HashSet;
+import java.util.TreeSet;
 
 public class Main {
     //Generic method
@@ -16,8 +22,7 @@ public class Main {
         Cat cat = new Cat("Feline", "Catto");
         // System.out.println(dog.toString());
         // System.out.println(cat.toString());
-        print(dog);
-        print(cat);
+
 
         cat.hunt();
         dog.hunt();
@@ -28,5 +33,34 @@ public class Main {
         //enums
         Season season = Season.SPRING;
         print(season);
+
+        //collection
+        Dog dog1 = new Dog("Canine", "Doggo2");
+        Dog dog2 = new Dog("Canine", "Doggo");
+        Dog dog3 = new Dog("Canine", "Doggo");
+
+        //set
+        //HashSet<Animal> animals = new HashSet<>();
+        //sortedSet
+        TreeSet<Animal> animals = new TreeSet<>();
+
+
+        //iterator
+        animals.add(dog1);
+        animals.add(dog2);
+        animals.add(dog3);
+
+        Iterator<Animal> iter = animals.iterator();
+        System.out.println("Using iterator:");
+        while(iter.hasNext()) {
+            Animal a = iter.next();
+            print(a);
+            a.makeNoise();
+        }
+        System.out.println("Using for each:");
+        for(Animal a : animals) {
+            print(a);
+            a.makeNoise();
+        }
     }
 }

@@ -12,9 +12,14 @@ public class Dog extends Animal implements Predator{
     public void makeNoise() {
         System.out.println("WOOF WOOF!");
     }
+    @Override
+    protected String getSpecies() {
+        return "Canine";
+    }
     // Override Interface methods
     @Override
     public void hunt() {
         System.out.println("**dog is hunting**");
     }
+    
 }
